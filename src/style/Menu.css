@@ -1,0 +1,52 @@
+.menu h1 {
+    text-align: center;
+    margin-top: 30px;
+    color: #26150acd;
+    font-size: 25px;
+}
+
+.menu p {
+    text-align: center;
+    margin-top: 10px;
+    color: #26150acd;
+    margin-bottom: 20px;
+}
+
+.menu-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 90px;
+    margin-left: 70px;
+    margin-top: 50px;
+}
+
+.menu-card {
+    text-align: center;
+    background-color: antiquewhite;
+    width: 350px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.menu-card img {
+    width: 350px;
+    height: 300px;
+}
+
+.menu-card h4 {
+    margin-bottom: 20px;
+    color: #26150acd;
+}
+
+.menu-card p {
+    padding-top: 10px;
+    color: #26150acd;
+}
+
+.menu-card h3 {
+    margin-top: 20px;
+    color: #26150acd;
+}
+
+.menu-card:hover {
+    transform: translateY(-6px);
+}
