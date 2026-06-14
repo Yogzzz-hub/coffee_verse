@@ -83,6 +83,8 @@ const About = () => {
                 <img
                   src={founderImage}
                   alt="Sara - Founder"
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover"
                 />
               </div>

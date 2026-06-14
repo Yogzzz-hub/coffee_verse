@@ -112,6 +112,7 @@ function Hero() {
               <img
                 src={heroImage}
                 alt="Premium Coffee"
+                fetchPriority="high"
                 className="relative w-full h-full object-contain drop-shadow-2xl"
               />
             </div>

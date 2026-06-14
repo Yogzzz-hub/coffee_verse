@@ -1,9 +1,10 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useLayoutEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import gsap from "gsap";
 
 function Navbar() {
   const navRef = useRef(null);
+  const prevPathRef = useRef(null);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
@@ -22,9 +23,12 @@ function Navbar() {
     );
   }, []);
 
-  useEffect(() => {
-    setIsMobileMenuOpen(false);
-  }, [location]);
+  useLayoutEffect(() => {
+    if (prevPathRef.current !== null && prevPathRef.current !== location.pathname) {
+      setIsMobileMenuOpen(false);
+    }
+    prevPathRef.current = location.pathname;
+  }, [location.pathname]);
 
   const navLinks = [
     { path: "/", label: "Home" },

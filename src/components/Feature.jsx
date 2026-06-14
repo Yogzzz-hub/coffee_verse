@@ -86,6 +86,8 @@ function Feature() {
               <img
                 src={heroImage}
                 alt="Premium Coffee"
+                loading="lazy"
+                decoding="async"
                 className="relative w-full h-full object-contain"
               />
             </div>

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -8,13 +8,25 @@ import Hero from "./components/Hero";
 import Card from "./components/Card";
 import Feature from "./components/Feature";
 import Footer from "./components/Footer";
-import About from "./components/About";
-import Menu from "./components/Menu";
-import Contact from "./components/Contact";
 
 import chocolateImage from "./assets/chocolate.png";
 
 gsap.registerPlugin(ScrollTrigger);
+
+const About = lazy(() => import("./components/About"));
+const Menu = lazy(() => import("./components/Menu"));
+const Contact = lazy(() => import("./components/Contact"));
+
+function PageLoader() {
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-coffee-950">
+      <div className="flex flex-col items-center gap-4">
+        <div className="w-12 h-12 border-4 border-amber-accent/30 border-t-amber-accent rounded-full animate-spin" />
+        <span className="text-cream-300/60 text-sm">Loading...</span>
+      </div>
+    </div>
+  );
+}
 
 function Home() {
   const cardsSectionRef = useRef(null);
@@ -130,12 +142,14 @@ function App() {
         <Navbar />
 
         <div className="flex-1">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/menu" element={<Menu />} />
-            <Route path="/contact" element={<Contact />} />
-          </Routes>
+          <Suspense fallback={<PageLoader />}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/menu" element={<Menu />} />
+              <Route path="/contact" element={<Contact />} />
+            </Routes>
+          </Suspense>
         </div>
 
         <Footer />
